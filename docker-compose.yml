@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  gluecodes_todomvc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gluecodes_todomvc
+    command: "npm start"
+    volumes:
+      - .:/src/gluecodes-todomvc:rw
+      - /src/gluecodes-todomvc/node_modules
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env

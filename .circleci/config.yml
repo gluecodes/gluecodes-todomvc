@@ -1,0 +1,63 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12
+
+    working_directory: ~/gluecodes-todomvc
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn install --production=false
+      - run:
+          name: lint
+          command: npm run lint
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: create build stamp
+          command: echo "module.exports = '$(date +%s%N | cut -b1-13)'" > ~/gluecodes-todomvc/buildStamp.js
+      - run: npm run generateMediaFiles
+      - run: npm run prerender
+      - run: npm run build
+      - run: npm run generateSitemap
+      - run:
+          name: test
+          command: npm test
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/gluecodes-todomvc
+
+  deploy:
+    docker:
+      - image: circleci/python:2.7-jessie
+
+    working_directory: ~/gluecodes-todomvc
+
+    steps:
+      - run:
+          name: install awscli
+          command: sudo pip install awscli
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: upload dist files
+          command: aws s3 sync ~/gluecodes-todomvc/dist/ s3://www.glue.codes/ --metadata-directive REPLACE --cache-control max-age=31536000 --acl public-read --delete
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
