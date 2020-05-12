@@ -45,17 +45,27 @@ export default ({
                     node.focus()
                   }}
                   onkeyup={async (e) => {
-                    if (e.key === 'Enter' && e.target.value.trim() !== '') {
-                      isTodoBeingSaved = true
-                      await actions.modifyTodo(todo.id, { title: e.target.value })
+                    if (e.key === 'Enter') {
+                      if (e.target.value.trim() !== '') {
+                        isTodoBeingSaved = true
+                        await actions.modifyTodo(todo.id, { title: e.target.value })
+                      } else {
+                        await actions.destroyTodo(todo.id)
+                      }
+
                       actions.makeTodoEditable(null)
-                      actions.reload()
                       isTodoBeingSaved = false
+                      actions.reload()
                     }
                   }}
                   onblur={async (e) => {
-                    if (!isTodoBeingSaved && e.target.value.trim() !== '') {
-                      await actions.modifyTodo(todo.id, { title: e.target.value })
+                    if (!isTodoBeingSaved) {
+                      if (e.target.value.trim() !== '') {
+                        await actions.modifyTodo(todo.id, { title: e.target.value })
+                      } else {
+                        await actions.destroyTodo(todo.id)
+                      }
+
                       actions.makeTodoEditable(null)
                       actions.reload()
                     }
