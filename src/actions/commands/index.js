@@ -1,0 +1,7 @@
+export { default as addTodo } from './addTodo/index'
+export { default as clearCompletedTodos } from './clearCompletedTodos/index'
+export { default as destroyTodo } from './destroyTodo/index'
+export { default as markAllTodosAs } from './markAllTodosAs/index'
+export { default as modifyTodo } from './modifyTodo/index'
+export { default as makeTodoEditable } from './makeTodoEditable/index'
+export { default as setTodosFilter } from './setTodosFilter/index'

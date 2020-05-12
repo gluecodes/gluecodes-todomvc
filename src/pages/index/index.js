@@ -6,7 +6,10 @@ import * as slots from './slots/index'
 
 initPage({
   providers: [
-
+    'parseUrlQueryParams',
+    'getTodos',
+    'getRemainingTodosCount',
+    'getCompletedTodosCount'
   ],
   rootNode: global.document.querySelector('#layout'),
   renderPage,

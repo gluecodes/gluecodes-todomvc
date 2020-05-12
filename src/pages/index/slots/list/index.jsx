@@ -2,31 +2,69 @@ import renderer from '../../../../init/renderer'
 
 import styles from './styles.css'
 
+let isTodoBeingSaved = false
+
 export default ({
-  actionResults
+  actionResults,
+  actions
 }) => (
   <section className={styles.main}>
     <input id="toggle-all" className={styles['toggle-all']} type="checkbox"/>
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className={styles['todo-list']}>
-      {/* These are here just to show the structure of the list items */}
-      {/* List items should get the class `editing` when editing and `completed` when marked as completed */}
-      <li className={styles.completed}>
-        <div className={styles.view}>
-          <input className={styles.toggle} type="checkbox" checked/>
-          <label>Taste JavaScript</label>
-          <button className={styles.destroy}/>
-        </div>
-        <input className={styles.edit} value="Create a TodoMVC template"/>
-      </li>
-      <li>
-        <div className={styles.view}>
-          <input className={styles.toggle} type="checkbox"/>
-          <label>Buy a unicorn</label>
-          <button className={styles.destroy}/>
-        </div>
-        <input className={styles.edit} value="Rule the web"/>
-      </li>
+      {
+        actionResults.getTodos.map(todo => (
+          <li
+            className={`${!todo.isActive ? styles.completed : ''} ${todo.id === actionResults.makeTodoEditable ? styles.editing : ''}`}
+            ondblclick={() => {
+              actions.makeTodoEditable(todo.id)
+            }}>
+            <div className={styles.view}>
+              <input
+                className={styles.toggle}
+                type="checkbox"
+                checked={!todo.isActive}
+                onchange={async (e) => {
+                  await actions.modifyTodo(todo.id, { isActive: !e.target.checked })
+                  actions.reload()
+                }}/>
+              <label>{todo.title}</label>
+              <button
+                className={styles.destroy}
+                onclick={async () => {
+                  await actions.destroyTodo(todo.id)
+                  actions.reload()
+                }}/>
+            </div>
+            {
+              todo.id === actionResults.makeTodoEditable ? (
+                <input
+                  className={styles.edit}
+                  value={todo.title}
+                  gc-onceDomNodeVisited={(node) => {
+                    node.focus()
+                  }}
+                  onkeyup={async (e) => {
+                    if (e.key === 'Enter') {
+                      isTodoBeingSaved = true
+                      await actions.modifyTodo(todo.id, { title: e.target.value })
+                      actions.makeTodoEditable(null)
+                      actions.reload()
+                      isTodoBeingSaved = false
+                    }
+                  }}
+                  onblur={async (e) => {
+                    if (!isTodoBeingSaved) {
+                      await actions.modifyTodo(todo.id, { title: e.target.value })
+                      actions.makeTodoEditable(null)
+                      actions.reload()
+                    }
+                  }}/>
+              ) : null
+            }
+          </li>
+        ))
+      }
     </ul>
   </section>
 )

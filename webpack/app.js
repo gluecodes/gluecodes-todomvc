@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ImageminPlugin = require('imagemin-webpack-plugin').default
+const CopyPlugin = require('copy-webpack-plugin')
 const version = require('../buildStamp')
 const configs = require('./configs/index')
 
@@ -75,7 +76,10 @@ module.exports = {
     new webpack.DefinePlugin({
       'global.ENV': JSON.stringify(process.env.NODE_ENV),
       'global.LOCATION_ORIGIN': JSON.stringify(process.env.LOCATION_ORIGIN)
-    })
+    }),
+    new CopyPlugin([
+      { from: path.resolve(__dirname, '../src/mediaFiles/images'), to: path.resolve(__dirname, '../dist/images') }
+    ])
   ],
   output: {
     filename: `[name]-${version}.bundle.js`,
