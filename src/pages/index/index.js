@@ -8,6 +8,7 @@ initPage({
   providers: [
     'parseUrlQueryParams',
     'getTodos',
+    'getFilteredTodos',
     'getRemainingTodosCount',
     'getCompletedTodosCount'
   ],

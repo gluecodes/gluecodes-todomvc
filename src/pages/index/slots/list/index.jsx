@@ -13,7 +13,7 @@ export default ({
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className={styles['todo-list']}>
       {
-        actionResults.getTodos.map(todo => (
+        actionResults.getFilteredTodos.map(todo => (
           <li
             className={`${!todo.isActive ? styles.completed : ''} ${todo.id === actionResults.makeTodoEditable ? styles.editing : ''}`}
             ondblclick={() => {
