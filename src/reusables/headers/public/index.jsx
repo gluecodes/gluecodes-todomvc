@@ -13,7 +13,7 @@ export default ({
       className={styles['new-todo']}
       placeholder="What needs to be done?"
       onkeyup={async (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && e.target.value.trim() !== '') {
           await actions.addTodo(e.target.value)
           e.target.value = ''
           actions.reload()

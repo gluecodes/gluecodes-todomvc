@@ -45,7 +45,7 @@ export default ({
                     node.focus()
                   }}
                   onkeyup={async (e) => {
-                    if (e.key === 'Enter') {
+                    if (e.key === 'Enter' && e.target.value.trim() !== '') {
                       isTodoBeingSaved = true
                       await actions.modifyTodo(todo.id, { title: e.target.value })
                       actions.makeTodoEditable(null)
@@ -54,7 +54,7 @@ export default ({
                     }
                   }}
                   onblur={async (e) => {
-                    if (!isTodoBeingSaved) {
+                    if (!isTodoBeingSaved && e.target.value.trim() !== '') {
                       await actions.modifyTodo(todo.id, { title: e.target.value })
                       actions.makeTodoEditable(null)
                       actions.reload()
