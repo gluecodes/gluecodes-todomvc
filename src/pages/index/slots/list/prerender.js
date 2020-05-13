@@ -1,3 +1,8 @@
 import styles from './styles.css'
 
-export default () => '<div>list</div>'
+export default () =>
+  `<section class="${styles.main}">
+    <ul class="${styles['todo-list']}">
+    </ul>
+  </section>
+`
