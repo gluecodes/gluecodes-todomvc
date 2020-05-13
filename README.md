@@ -1,6 +1,6 @@
 # @gluecodes/todomvc
 
-This is implementation of todo list app from http://todomvc.com/. It's meant to show you the code structure of an app generated with GlueCodes Platform (https://www.glue.codes). Enjoy exploring!
+This is an implementation of todo list app from http://todomvc.com/. It's meant to show you the code structure of an app generated with GlueCodes Platform (https://www.glue.codes). Enjoy exploring!
 
 ## Prerequisites
 
