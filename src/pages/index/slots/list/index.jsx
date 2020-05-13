@@ -19,7 +19,7 @@ export default ({
             await actions.markAllTodosAs(e.target.checked)
             actions.reload()
           }}/>,
-          <label htmlFor="toggle-all">Mark all as complete</label>
+        <label htmlFor="toggle-all">Mark all as complete</label>
       ] : null
     }
     <ul className={styles['todo-list']}>

@@ -1,7 +1,7 @@
 {
   "name": "gluecodes-todomvc",
   "version": "1.0.0",
-  "description": "",
+  "description": "GlueCodes - TodoMVC",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config ./webpack/app.js --mode production",
