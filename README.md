@@ -1,5 +1,7 @@
 # @gluecodes/todomvc
 
+This is implementation of todo list app from http://todomvc.com/. It's meant to show you the code structure of an app generated with GlueCodes Platform (https://www.glue.codes). Enjoy exploring!
+
 ## Prerequisites
 
 Docker
@@ -10,7 +12,7 @@ Docker
 2. When Webpack dev server started, run: ```bash docker exec -it gluecodes_todomvc npm run prerender && docker exec -it gluecodes_todomvc npm run build  ```
 3. Go to http://localhost:5000
 
-#### Optional
+### Optional
 
 Open Chrome DevTools and do CTRL+SHIFT+P and disable JavaScript to check prerendering
 

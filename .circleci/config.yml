@@ -22,7 +22,6 @@ jobs:
       - run:
           name: create build stamp
           command: echo "module.exports = '$(date +%s%N | cut -b1-13)'" > ~/gluecodes-todomvc/buildStamp.js
-      - run: npm run generateMediaFiles
       - run: npm run prerender
       - run: npm run build
       - run: npm run generateSitemap
@@ -48,7 +47,7 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: upload dist files
-          command: aws s3 sync ~/gluecodes-todomvc/dist/ s3://www.glue.codes/ --metadata-directive REPLACE --cache-control max-age=31536000 --acl public-read --delete
+          command: aws s3 sync ~/gluecodes-todomvc/dist/ s3://gluecodes-todomvc/ --metadata-directive REPLACE --cache-control max-age=31536000 --acl public-read --delete
 
 workflows:
   version: 2
