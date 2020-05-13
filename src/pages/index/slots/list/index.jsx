@@ -9,8 +9,19 @@ export default ({
   actions
 }) => (
   <section className={styles.main}>
-    <input id="toggle-all" className={styles['toggle-all']} type="checkbox"/>
-    <label htmlFor="toggle-all">Mark all as complete</label>
+    {
+      actionResults.getTodos.length > 0 ? [
+        <input
+          id="toggle-all"
+          className={styles['toggle-all']}
+          type="checkbox"
+          onchange={async (e) => {
+            await actions.markAllTodosAs(e.target.checked)
+            actions.reload()
+          }}/>,
+          <label htmlFor="toggle-all">Mark all as complete</label>
+      ] : null
+    }
     <ul className={styles['todo-list']}>
       {
         actionResults.getFilteredTodos.map(todo => (
