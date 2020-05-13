@@ -24,7 +24,6 @@ jobs:
           command: echo "module.exports = '$(date +%s%N | cut -b1-13)'" > ~/gluecodes-todomvc/buildStamp.js
       - run: npm run prerender
       - run: npm run build
-      - run: npm run generateSitemap
       - run:
           name: test
           command: npm test
