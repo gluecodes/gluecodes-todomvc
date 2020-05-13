@@ -6,7 +6,6 @@ export default () => `
     <input
       autofocus
       class="${styles['new-todo']}"
-      placeholder="What needs to be done?"
-      />
+      placeholder="What needs to be done?"/>
   </header>
 `
