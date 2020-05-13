@@ -140,4 +140,4 @@ npm run start
 
 ### License
 
-ISC
+MIT
