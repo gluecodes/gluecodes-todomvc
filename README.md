@@ -150,4 +150,4 @@ npm run start
 
 ### License
 
-[MIT](https://github.com/gluecodes/gluecodes-todomvc/blob/master/LICENSE.md)
+[MIT](https://github.com/gluecodes/gluecodes-todomvc/blob/master/LICENSE)
