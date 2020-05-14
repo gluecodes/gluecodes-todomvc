@@ -1,6 +1,6 @@
 # @gluecodes/todomvc
 
-This is an implementation of todo list app from http://todomvc.com/. It's meant to show you the code structure of an app generated with GlueCodes Platform (https://www.glue.codes). Enjoy exploring!
+This is an implementation of TodoMVC app from http://todomvc.com/. It's meant to show you the code structure of an app generated with GlueCodes Platform (https://www.glue.codes). Enjoy exploring!
 
 ## Prerequisites
 
@@ -8,9 +8,19 @@ Docker
 
 ## Usage
 
-1. Run: ```bash docker-compose up ```
-2. When Webpack dev server started, run: ```bash docker exec -it gluecodes_todomvc npm run prerender && docker exec -it gluecodes_todomvc npm run build  ```
-3. Go to http://localhost:5000
+- Run:
+```bash  
+cp .env_template .env 
+```
+- Run: 
+```bash 
+docker-compose up 
+```
+- When Webpack dev server started, run: 
+```bash 
+docker exec -it gluecodes_todomvc npm run prerender && docker exec -it gluecodes_todomvc npm run build  
+```
+- Go to http://localhost:5000
 
 ### Optional
 
@@ -27,8 +37,8 @@ Open Chrome DevTools and do CTRL+SHIFT+P and disable JavaScript to check prerend
 ├── package.json
 ├── postcss.config.js
 ├── src
-│   ├── actions                         # App actions
-│   │   ├── commands                    # Actions triggered by the user
+│   ├── actions -->                       # App actions
+│   │   ├── commands -->                  # Actions triggered by the user
 │   │   │   ├── addTodo
 │   │   │   │   └── index.js
 │   │   │   ├── clearCompletedTodos
@@ -44,7 +54,7 @@ Open Chrome DevTools and do CTRL+SHIFT+P and disable JavaScript to check prerend
 │   │   │   │   └── index.js
 │   │   │   └── setTodosFilter
 │   │   │       └── index.js
-│   │   └── providers                   # Actions to be executed before initial rendering
+│   │   └── providers -->                 # Actions to be executed before initial rendering
 │   │       ├── getCompletedTodosCount
 │   │       │   └── index.js
 │   │       ├── getFilteredTodos
@@ -56,7 +66,7 @@ Open Chrome DevTools and do CTRL+SHIFT+P and disable JavaScript to check prerend
 │   │       ├── index.js
 │   │       └── parseUrlQueryParams
 │   │           └── index.js
-│   ├── init
+│   ├── init -->                          # Framework initializations
 │   │   ├── page.js
 │   │   ├── renderer.js
 │   │   └── store.js
@@ -66,30 +76,30 @@ Open Chrome DevTools and do CTRL+SHIFT+P and disable JavaScript to check prerend
 │   ├── pageTemplates
 │   │   └── index
 │   │       └── index.ejs
-│   ├── pages                           # Available pages
+│   ├── pages -->                         # Available pages
 │   │   └── index
-│   │       ├── index.js                # Page entry point
-│   │       ├── layout.jsx              # Layout JSX
-│   │       ├── prerender.js            # Layut static HTML used for prerender
+│   │       ├── index.js -->              # Page entry point
+│   │       ├── layout.jsx -->            # Layout JSX
+│   │       ├── prerender.js -->          # Layut static HTML used for prerender
 │   │       ├── settings.js
-│   │       ├── slots                   # Sections of UI
+│   │       ├── slots -->                 # Sections of UI
 │   │       │   ├── bottomBar
-│   │       │   │   ├── index.jsx       # Section JSX
-│   │       │   │   ├── prerender.js    # Section HTML used by prerender
-│   │       │   │   └── styles.css      # Section styles
+│   │       │   │   ├── index.jsx -->     # Section JSX
+│   │       │   │   ├── prerender.js -->  # Section HTML used by prerender
+│   │       │   │   └── styles.css        # Section styles
 │   │       │   ├── index.js
 │   │       │   └── list
 │   │       │       ├── index.jsx
 │   │       │       ├── prerender.js
 │   │       │       └── styles.css
-│   │       └── styles.css              # Layout styles
-│   └── reusables                       # Stuff reusable accross the app
-│       ├── footers                     # Reusable piece of UI which repeats accross the app
+│   │       └── styles.css -->            # Layout styles
+│   └── reusables -->                     # Stuff reusable accross the app
+│       ├── footers -->                   # Reusable piece of UI which repeats accross the app
 │       │   └── public
 │       │       ├── index.jsx
 │       │       ├── prerender.js
 │       │       └── styles.css
-│       ├── functions                   # Utility functions, model functions etc.
+│       ├── functions -->                 # Utility functions, model functions etc.
 │       │   ├── getTodosFromStorage
 │       │   │   └── index.js
 │       │   ├── index.js
@@ -123,7 +133,7 @@ Prerender:
 docker exec -it gluecodes_todomvc npm run prerender 
 ```
 
-Build
+Build:
 ```bash 
 docker exec -it gluecodes_todomvc npm run build
  ```
@@ -140,4 +150,4 @@ npm run start
 
 ### License
 
-MIT
+[MIT](https://github.com/gluecodes/gluecodes-todomvc/blob/master/LICENSE.md)
