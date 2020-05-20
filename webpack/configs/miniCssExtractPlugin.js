@@ -3,5 +3,5 @@ const version = require('../../buildStamp')
 
 module.exports = new MiniCssExtractPlugin({
   filename: `[name]-${version}.bundle.css`,
-  chunkFilename: `[id]-${version}.chunk.css'`
+  chunkFilename: `[id]-${version}.chunk.css`
 })
