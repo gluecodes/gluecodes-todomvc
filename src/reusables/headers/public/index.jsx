@@ -12,6 +12,9 @@ export default ({
       }}
       className={styles['new-todo']}
       placeholder="What needs to be done?"
+      gc-onceDomNodeVisited={(node) => {
+        node.focus()
+      }}
       onkeyup={async (e) => {
         if (e.key === 'Enter' && e.target.value.trim() !== '') {
           await actions.addTodo(e.target.value)
